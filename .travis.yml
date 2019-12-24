@@ -1,12 +1,15 @@
 language: python
 sudo: false
-env:
- - TOXENV=py26
- - TOXENV=py27
- - TOXENV=py32
- - TOXENV=py33
- - TOXENV=py34
- - TOXENV=pypy
+matrix:
+  include:
+    - arch: arm64
+      TOXENV: py27
+    - arch: amd64
+      TOXENV: py27
+    - arch: arm64
+      TOXENV: py37
+    - arch: amd64
+      TOXENV: py37
 install:
  - travis_retry pip install tox
  # virtualenv 14 installs pip8 under tox which breaks py32
